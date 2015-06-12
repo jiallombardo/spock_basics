@@ -6,25 +6,25 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 @Configuration
-public class FooBarConfiguration {
+public class TheEnterpriseConfiguration {
 
     /**
-     * A context FooBar bean with a Proxy Foo implementation.
-     * We avoid writing the implementation of Foo.
+     * A context {@link TheEnterprise} bean with a Proxy {@link ClearanceProvider} implementation.
+     * We avoid writing the implementation of {@link ClearanceProvider}.
      */
     @Bean
-    FooBar fooBar() {
+    TheEnterprise theShip() {
         InvocationHandler handler = new InvocationHandler() {
             @Override
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                 return null;
             }
         };
-        Foo proxyFoo = (Foo)Proxy.newProxyInstance(Foo.class.getClassLoader(),
-                new Class[]{Foo.class},
+        ClearanceProvider proxyProvider = (ClearanceProvider) Proxy.newProxyInstance(ClearanceProvider.class.getClassLoader(),
+                new Class[]{ClearanceProvider.class},
                 handler);
-        FooBar fooBar = new FooBar(proxyFoo);
+        TheEnterprise ship = new TheEnterprise("trainee", proxyProvider);
 
-        return fooBar;
+        return ship;
     }
 }
