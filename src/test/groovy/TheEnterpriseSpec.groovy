@@ -100,19 +100,19 @@ public class TheEnterpriseSpec extends Specification {
 
     @IgnoreIf({ System.getProperty(THE_ENTERPRISE_IS_DOCKED).equals("false") })
     public void 'officers are trained at the enterprise'() {
-        given: 'we have a number of men to train'
-            int numberOfMenToTrain = 3;
+        given: 'we have a number of people to train'
+            int numberOfPeopleToTrain = 3;
 
-        when: 'we train these men'
-            List<Officer> officers = ourShip.trainOfficers(numberOfMenToTrain);
+        when: 'we train these people'
+            List<Officer> officers = ourShip.trainOfficers(numberOfPeopleToTrain);
 
         then: 'we receive proper officers with proper titles and names'
-            officers.size() == numberOfMenToTrain;
-            for (int i = 0; i < numberOfMenToTrain; i++) {
+            officers.size() == numberOfPeopleToTrain;
+            for (int i = 0; i < numberOfPeopleToTrain; i++) {
                 verifyNewOfficer(i, officers);
             }
 
-        when: 'we have no men to train'
+        when: 'we have no one to train'
             List<Officer> noOfficers = ourShip.trainOfficers(0);
 
         then: 'we receive no officers'
